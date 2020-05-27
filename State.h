@@ -13,10 +13,12 @@ namespace THNGEO002
 
     public:
         std::vector<State> neighbours;
-        State();                                //constructor for the state class
-        void setValue(double value);            //setting the value for the state
-        double getValue() const;                //return the value opf the state
-        void assignNeighbours(State neighbour); //assigning the neighbours for a particular state
+        std::vector<double> rewards;
+        State(); //constructor for the state class
+
+        void setValue(double value);                           //setting the value for the state
+        double getValue() const;                               //return the value opf the state
+        void assignNeighbours(State neighbour, double reward); //assigning the neighbours and its reward for a particular state in an unordered map
     };
 } // namespace THNGEO002
 #endif
