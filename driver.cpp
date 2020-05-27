@@ -85,6 +85,8 @@ int main(int argc, char *argv[])
         check=converge(states,prevVals);
     }
 
+
+
     std::cout<<"Number of iterations to converge: "<<count<<std::endl;
 
     for (int i = 0; i < states.size(); i++)
@@ -96,8 +98,8 @@ int main(int argc, char *argv[])
 
     //optimal iteration
         std::cout<<std::endl;
-
     std::cout<<"Optimal Iteration Grid"<<std::endl;
+    std::cout<<"This grid shows the action to be taken by the current state to obtain optimal policy"<<std::endl;
     for (int i = 0; i < states.size(); i++)
         {
             double stateValue = 0;
@@ -120,8 +122,16 @@ int main(int argc, char *argv[])
             }
             //std::cout << "new state vaalue  for state " << i << " is " << stateValue << std::endl;
 
-
-            std::cout << poop<< " ";
+            if (poop=="")
+            {
+                std::cout << poop<< "end| ";
+            }
+            else
+            {
+            std::cout << poop<< " | ";
+            }
+            
+            
             if (i==2)
             {
                 std::cout<<std::endl;
