@@ -42,8 +42,10 @@ int main(int argc, char *argv[])
     std::vector<double> prevVals={-1,-1,-1,-1,-1,-1};
 
     bool check = false;
-    while (check == false)
+    int count=0;
+    while (!check)
     {
+        count++;
         for (int st = 0; st < states.size(); st++)
         {
            prevVals[st]=states[st]->getValue();
@@ -55,14 +57,14 @@ int main(int argc, char *argv[])
         for (int i = 0; i < states.size(); i++)
         {
             double stateValue = states[i]->getValue();
-            std::cout << "Initial state val for  " << i << " is " << stateValue << std::endl;
+            //std::cout << "Initial state val for  " << i << " is " << stateValue << std::endl;
 
             for (int j = 0; j < states[i]->neighbours.size(); j++)
             {
                 double rwrd = states[i]->rewards[j];
-                std::cout << "Rewards from state " << i << " to state " << j << " is " << rwrd << std::endl;
+                //std::cout << "Rewards from state " << i << " to state " << j << " is " << rwrd << std::endl;
                 double optVal = dReward * (states[i]->neighbours[j]->getValue());
-                std::cout << "optimal value of state " << j << " is " << optVal << std::endl;
+                //std::cout << "optimal value of state " << j << " is " << optVal << std::endl;
 
                 double cVal = rwrd + optVal;
                 if (cVal > stateValue)
@@ -70,10 +72,10 @@ int main(int argc, char *argv[])
                     stateValue = cVal;
                 }
             }
-            std::cout << "new state vaalue  for state " << i << " is " << stateValue << std::endl;
+            //std::cout << "new state vaalue  for state " << i << " is " << stateValue << std::endl;
 
             states[i]->setNewValue(stateValue);
-            std::cout << "================================" << std::endl;
+            //std::cout << "================================" << std::endl;
         }
         for (int i = 0; i < states.size(); i++)
         {
@@ -83,8 +85,10 @@ int main(int argc, char *argv[])
         check=converge(states,prevVals);
     }
 
+    std::cout<<"Number of iterations to converge: "<<count<<std::endl;
+
     for (int i = 0; i < states.size(); i++)
     {
-        std::cout << states[i]->getValue() << std::endl;
+        std::cout <<"V*(s"<<i+1<<") = "<< states[i]->getValue() << std::endl;
     }
 }
