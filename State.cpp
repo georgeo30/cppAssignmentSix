@@ -14,7 +14,7 @@ namespace THNGEO002
     {
         return value;
     }
-    void State::assignNeighbours(State neighbour, double reward)
+    void State::assignNeighbours(State * neighbour, double reward)
     {
         neighbours.push_back(neighbour);
         rewards.push_back(reward);
