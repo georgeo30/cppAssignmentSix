@@ -2,7 +2,7 @@
 
 namespace THNGEO002
 {
-    State::State()
+    State::State(std::string name):name(name)
     {
         value = 0;
         newVal=0;
@@ -14,6 +14,10 @@ namespace THNGEO002
     double State::getValue() const
     {
         return value;
+    }
+    std::string State::getName() const
+    {
+        return name;
     }
     void State::setNewValue(double newValue)
     {

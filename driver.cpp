@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 {
 
     const double dReward = 0.8;
-    THNGEO002::State s1, s2, s3, s4, s5, s6;
+    THNGEO002::State s1("s1"), s2("s2"), s3("s3"), s4("s4"), s5("s5"), s6("s6");
     //s1 neighbours and rewards
     s1.assignNeighbours(&s2, 0);
     s1.assignNeighbours(&s4, 0);
@@ -91,4 +91,43 @@ int main(int argc, char *argv[])
     {
         std::cout <<"V*(s"<<i+1<<") = "<< states[i]->getValue() << std::endl;
     }
+
+
+
+    //optimal iteration
+        std::cout<<std::endl;
+
+    std::cout<<"Optimal Iteration Grid"<<std::endl;
+    for (int i = 0; i < states.size(); i++)
+        {
+            double stateValue = 0;
+            std::string poop;
+            //std::cout << "Initial state val for  " << i << " is " << stateValue << std::endl;
+
+            for (int j = 0; j < states[i]->neighbours.size(); j++)
+            {
+                 double rwrd = states[i]->rewards[j];
+                // //std::cout << "Rewards from state " << i << " to state " << j << " is " << rwrd << std::endl;
+                 double optVal = dReward * (states[i]->neighbours[j]->getValue());
+                // //std::cout << "optimal value of state " << j << " is " << optVal << std::endl;
+
+                double cVal =  rwrd + optVal;
+                if (cVal > stateValue)
+                {
+                    stateValue = cVal;
+                    poop=states[i]->neighbours[j]->getName();
+                }
+            }
+            //std::cout << "new state vaalue  for state " << i << " is " << stateValue << std::endl;
+
+
+            std::cout << poop<< " ";
+            if (i==2)
+            {
+                std::cout<<std::endl;
+            }
+            
+        }
+
+        std::cout<<std::endl;
 }
