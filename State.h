@@ -10,6 +10,7 @@ namespace THNGEO002
     {
     private:
         double value;
+        double newVal;
 
     public:
         std::vector<State *> neighbours;
@@ -18,6 +19,8 @@ namespace THNGEO002
 
         void setValue(double value);                           //setting the value for the state
         double getValue() const;                               //return the value opf the state
+        void setNewValue(double value);                           //setting the value for the state
+        double getNewValue() const;                               //return the value opf the state
         void assignNeighbours(State * neighbour, double reward); //assigning the neighbours and its reward for a particular state in an unordered map
     };
 } // namespace THNGEO002
